@@ -14,13 +14,13 @@ router.beforeEach((to, from, next) => {
 	if (whiteList.includes(to.path)) {
 		next()
 	}
-	// if (localStorage.getItem('access_token')) {
-	// 	next()
-	// } else {
-	// 	next({
-	// 		path: '/login',
-	// 	})
-	// }
+	if (localStorage.getItem('access_token')) {
+		next()
+	} else {
+		next({
+			path: '/login',
+		})
+	}
 	next()
 	NProgress.done()
 })

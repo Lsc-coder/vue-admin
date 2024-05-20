@@ -30,11 +30,6 @@
 <script setup>
 	import { ref } from 'vue'
 	import AcountLogin from './components/AccountLogin.vue'
-
-	const loginData = ref({
-		account: '',
-		password: '',
-	})
 </script>
 <style lang="scss" scoped>
 	.login {

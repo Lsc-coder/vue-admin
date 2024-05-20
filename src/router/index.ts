@@ -9,6 +9,7 @@ const routes = [
 		redirect: '/home',
 		name: '首页',
 		children: [{ path: 'home', component: () => import('@/views/Home.vue') }],
+		meta: { title: '首页' },
 	},
 	{
 		path: '/system',

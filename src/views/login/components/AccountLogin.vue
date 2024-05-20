@@ -8,7 +8,7 @@
 						<el-input v-model="form.account" placeholder="请输入用户名" prefix-icon="UserFilled" />
 					</el-form-item>
 					<el-form-item prop="password">
-						<el-input v-model="form.password" password placeholder="请输入密码" prefix-icon="lock" />
+						<el-input v-model="form.password" show-password placeholder="请输入密码" prefix-icon="lock" />
 					</el-form-item>
 				</el-form>
 			</div>
@@ -29,8 +29,8 @@
 	const router = useRouter()
 
 	const form = ref<formType>({
-		account: '',
-		password: '',
+		account: 'admin',
+		password: '123456',
 	})
 
 	const rule = ref<FormRules>({
@@ -51,7 +51,7 @@
 			if (valid) {
 				const { data } = await accountLogin(form.value)
 				console.log('🚀 ~ formRef.validate ~ data:', data)
-				localStorageCache.set('access_token', data.access_token)
+				localStorageCache.set('access_token', data[0].access_token)
 				router.push('/')
 			}
 		})

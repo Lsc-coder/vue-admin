@@ -9,8 +9,14 @@ class Cache {
 		if (key) return localStorage.getItem(JSON.parse(key))
 	}
 
-	delete(key: string) {
-		localStorage.delete(key)
+	delete(key: string | Array<string>) {
+		if (typeof key === 'string') {
+			localStorage.removeItem(key)
+		} else if (key instanceof Array) {
+			key.forEach((item) => {
+				localStorage.removeItem(item)
+			})
+		}
 	}
 
 	clear() {

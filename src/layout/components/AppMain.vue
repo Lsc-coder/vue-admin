@@ -1,8 +1,5 @@
-<template lang="">
-	<BreadCrumb></BreadCrumb>
-	<router-view />
+<template>
+	<router-view class="p-20" />
 </template>
-<script setup lang="ts">
-	import BreadCrumb from './Breadcrumb/index.vue'
-</script>
+<script setup lang="ts"></script>
 <style lang=""></style>
