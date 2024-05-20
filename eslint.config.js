@@ -39,6 +39,7 @@ export default [
 			'@typescript-eslint/no-explicit-any': 'off',
 			'vue/valid-v-for': 'warn',
 			'vue/no-template-shadow': 'off',
+			'vue/require-toggle-inside-transition': 'off',
 		},
 	},
 ]

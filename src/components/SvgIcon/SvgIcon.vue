@@ -1,11 +1,13 @@
 <template>
 	<svg aria-hidden="true" class="svg-icon" :style="`width:${size}px;height:${size}px;`">
-		<use :xlink:href="symbolId" :fill="color" v-on="$attr" />
+		<use :xlink:href="symbolId" :fill="color" v-bind="attrs" />
 	</svg>
 </template>
 
 <script>
 	import { defineComponent, computed } from 'vue'
+	import { useAttrs } from 'vue'
+
 	export default defineComponent({
 		name: 'SvgIcon',
 		props: {
@@ -28,9 +30,8 @@
 		},
 		setup(props) {
 			const symbolId = computed(() => `#${props.prefix}-${props.name}`)
-			console.log('🚀 ~ setup ~ symbolId:', symbolId.value)
-
-			return { symbolId }
+			const attrs = useAttrs()
+			return { symbolId, attrs }
 		},
 	})
 </script>

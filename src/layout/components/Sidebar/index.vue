@@ -26,8 +26,6 @@
 	const isCollapse = computed(() => menuStore.menuCollapse)
 
 	const defaultActive = '/home'
-
-	console.log('🚀 ~ menuStore:', menuStore.menuCollapse, isCollapse)
 	const menuList = ref([])
 	onMounted(() => {
 		getMenu().then((res) => {
