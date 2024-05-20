@@ -4,8 +4,6 @@
 		basePath?: string
 	}
 	const props = defineProps<Props>()
-	console.log('🚀 ~ props:', props)
-
 	const isHasChild = (menu) => {
 		return menu?.children?.length
 	}

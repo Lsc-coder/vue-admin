@@ -49,7 +49,6 @@
 	})
 
 	const slots = useSlots()
-	console.log('🚀 ~ slots:', slots instanceof Array)
 </script>
 <style lang="scss" scoped>
 	.basic-table {

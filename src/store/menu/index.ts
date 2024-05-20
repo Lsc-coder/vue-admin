@@ -3,7 +3,7 @@ import { menuType } from './type'
 import { arrTotree } from '@/utils/tree'
 
 export const useMenuStore = defineStore('menu', {
-	state: () => ({ menuList: [] }),
+	state: () => ({ menuList: [], activeIndex: '/home', menuCollapse: false }),
 	getters: {},
 	actions: {
 		setMenuList() {
@@ -27,8 +27,13 @@ export const useMenuStore = defineStore('menu', {
 					name: '菜单管理',
 				},
 			]
-			console.log(arrTotree(menuList))
 			this.menuList.push()
+		},
+		updateActiveIndex(payload: number) {
+			this.activeIndex = payload
+		},
+		updateMenuCollapse() {
+			this.menuCollapse = !this.menuCollapse
 		},
 	},
 })

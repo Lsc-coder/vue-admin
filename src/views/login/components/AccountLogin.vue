@@ -50,7 +50,6 @@
 		formRef.validate(async (valid: boolean) => {
 			if (valid) {
 				const { data } = await accountLogin(form.value)
-				console.log('🚀 ~ formRef.validate ~ data:', data)
 				localStorageCache.set('access_token', data[0].access_token)
 				router.push('/')
 			}

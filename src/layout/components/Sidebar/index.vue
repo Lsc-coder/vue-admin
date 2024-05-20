@@ -8,16 +8,26 @@
 			:default-active="defaultActive"
 			text-color="#A9ABB3"
 			router
+			:collapse="isCollapse"
+			unique-opened
+			collapse-transition
 		>
 			<SidebarItem v-for="(item, i) in menuList" :key="i" :menu="item" :base-path="item.path" />
 		</el-menu>
 	</div>
 </template>
 <script setup lang="ts">
-	import { onMounted, ref } from 'vue'
+	import { onMounted, ref, computed } from 'vue'
+	import { useMenuStore } from '@/store'
 	import SidebarItem from './sidebarItem.vue'
 	import { getMenu } from '@/api/meun'
+
+	const menuStore = useMenuStore()
+	const isCollapse = computed(() => menuStore.menuCollapse)
+
 	const defaultActive = '/home'
+
+	console.log('🚀 ~ menuStore:', menuStore.menuCollapse, isCollapse)
 	const menuList = ref([])
 	onMounted(() => {
 		getMenu().then((res) => {

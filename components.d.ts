@@ -34,6 +34,7 @@ declare module 'vue' {
     ElRow: typeof import('element-plus/es')['ElRow']
     ElSelect: typeof import('element-plus/es')['ElSelect']
     ElSelectV2: typeof import('element-plus/es')['ElSelectV2']
+    ElStatistic: typeof import('element-plus/es')['ElStatistic']
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
@@ -44,5 +45,6 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     SpecialistCard: typeof import('./src/components/card/SpecialistCard.vue')['default']
     SvgIcon: typeof import('./src/components/SvgIcon/SvgIcon.vue')['default']
+    SwiperCard: typeof import('./src/components/card/SwiperCard.vue')['default']
   }
 }

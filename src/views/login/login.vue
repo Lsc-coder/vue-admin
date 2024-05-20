@@ -4,7 +4,7 @@
 			<div class="login-content-left">
 				<div class="login-content-left-title">
 					<div class="login-content-left-top-icon">
-						<el-icon class=""><Notebook size="36" /></el-icon>
+						<el-icon class=""><Reading size="36" /></el-icon>
 					</div>
 					<div class="login-content-left-top-title">
 						<span>教育管理系统</span>

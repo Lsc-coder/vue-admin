@@ -6,8 +6,6 @@ import 'nprogress/nprogress.css' // progress bar style
 const whiteList = ['/login']
 
 router.beforeEach((to, from, next) => {
-	console.log('🚀 ~ router.beforeEach ~ to:', from)
-
 	// start progress bar
 	NProgress.start()
 	document.title = to.meta.title as string
@@ -25,7 +23,5 @@ router.beforeEach((to, from, next) => {
 	NProgress.done()
 })
 router.afterEach((to, from) => {
-	console.log('🚀 ~ router.beforeEach ~ to:', to, from)
-
 	window.scrollTo(0, 0)
 })

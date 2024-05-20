@@ -25,7 +25,6 @@ export default [
 		url: '/api/user/login',
 		type: 'get',
 		response: (data) => {
-			console.log('🚀 ~ data:', data)
 			result.data = result.data.filter((item) => item.userId == data.query.account)
 
 			return Mock.mock(result)
