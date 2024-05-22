@@ -1,10 +1,10 @@
 <template>
-	<div class="flex justify-between h200">
-		<div v-for="(item, index) in dataList" :key="index" :class="`flex justify-between items-center bg-${index}`">
+	<div class="flex justify-between h150 cursor-pointer">
+		<div v-for="(item, index) in dataList" :key="index" :class="`w-23% flex justify-between items-center bg-${index}`">
 			<div class="pl-40">
 				<SvgIcon :name="item.icon" size="50" />
 			</div>
-			<div class="flex-1 color-#fff font-16 p-40 direction-column">
+			<div class="flex-1 color-#fff font-16 direction-column">
 				<div class="pb-10">
 					{{ item.prefix }}
 				</div>
@@ -23,12 +23,13 @@
 <script setup>
 	import { ref, computed, reactive } from 'vue'
 	import { useTransition } from '@vueuse/core'
+	import { useNumberAnimation } from '@/utils/animation'
 
 	import SvgIcon from '@/components/SvgIcon/SvgIcon.vue'
 
 	const diff = '+1.2%同昨天对比'
 	let dataList = ref([])
-	dataList.value = [
+	const data = ref([
 		{
 			prefix: '今日订单收入',
 			value: 6666.88,
@@ -53,7 +54,21 @@
 				return `${value}%`
 			},
 		},
-	]
+	])
+
+	dataList.value = data.value
+	//动画效果
+	dataList.value.forEach((item) => {
+		useNumberAnimation({
+			from: 0,
+			to: item.value,
+			duration: 3000,
+			toFixed: 2,
+			onUpdate: (value) => {
+				item.value = value
+			},
+		})
+	})
 </script>
 <style lang="scss" scoped>
 	.bg-0 {

@@ -1,4 +1,4 @@
-class Cache {
+class locCache {
 	private cache: Map<string, any> = new Map()
 
 	set(key: string, value: any) {
@@ -23,4 +23,4 @@ class Cache {
 		localStorage.clear()
 	}
 }
-export const localStorageCache = new Cache()
+export const localStorageCache = new locCache()

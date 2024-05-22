@@ -19,5 +19,8 @@ export default defineConfig({
 			warn: true,
 		}),
 	],
-	rules: [['direction-column', { display: 'flex', 'flex-direction': 'column' }]],
+	rules: [
+		['direction-column', { display: 'flex', 'flex-direction': 'column' }],
+		['flex-2', { flex: '2 1 0%' }],
+	],
 })

@@ -1,7 +1,7 @@
 <template lang="">
 	<div class="bread-crumb">
 		<el-breadcrumb separator="/">
-			<el-breadcrumb-item v-for="(item, index) in breadcrumbData">
+			<el-breadcrumb-item v-for="(item, index) in breadcrumbData" :key="index">
 				<span v-if="index === breadcrumbData.length - 1 || index === 0" class="no-redirect">{{
 					item.name || item.meta.title
 				}}</span>
@@ -17,7 +17,7 @@
 	const route = useRoute()
 	const router = useRouter()
 	// 生成数组数据
-	const breadcrumbData = ref([])
+	const breadcrumbData = ref()
 	const getBreadcrumbData = () => {
 		breadcrumbData.value = route.matched.filter((item) => {
 			return item.name

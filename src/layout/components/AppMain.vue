@@ -1,5 +1,5 @@
 <template>
-	<router-view class="p-20" />
+	<router-view class="overflow-y-auto" />
 </template>
 <script setup lang="ts"></script>
-<style lang=""></style>
+<style lang="" scoped></style>

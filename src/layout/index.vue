@@ -17,6 +17,7 @@
 <style lang="scss" scoped>
 	.common-layout {
 		height: 100vh;
+		overflow: hidden;
 		.el-header {
 			padding: 0px;
 			display: flex;
