@@ -1,11 +1,18 @@
-type itemArray = {
-	label: string
-	type: string
+export interface itemArray {
 	value: string
-	placeholder: object
-	items: Array<any>
 	key: string
-	options: Array<any>
+	type: string
+	placeholder?: string
+	label?: string
+	items?: Array<any>
+	options?: Array<any>
+}
+export interface querySearchProps {
+	labelWidth: Number
+	layout: Object
+	items: Array<itemArray>
+	isCanShink?: Boolean
+	modelValue: {}
 }
 export const searchProps = {
 	labelWidth: {
@@ -26,9 +33,10 @@ export const searchProps = {
 		type: Array<itemArray>,
 		default: [],
 	},
+
 	isCanShink: {
 		type: Boolean,
 		default: true,
 	},
-	modelValue: <any>{},
+	modelValue: {},
 }

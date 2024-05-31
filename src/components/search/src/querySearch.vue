@@ -56,18 +56,20 @@
 		<div class="container-search-button">
 			<div>
 				<slot name="prefix-button" />
-				<el-button v-if="isExpose" @click="toggleExpose">
-					展开
-					<el-icon class="el-icon--right">
-						<ArrowDownBold size="20" />
-					</el-icon>
-				</el-button>
-				<el-button v-else @click="toggleExpose">
-					收起
-					<el-icon class="el-icon--right">
-						<ArrowUpBold size="20" />
-					</el-icon>
-				</el-button>
+				<template v-if="isNeed">
+					<el-button v-if="isExpose" @click="toggleExpose">
+						展开
+						<el-icon class="el-icon--right">
+							<ArrowDownBold size="20" />
+						</el-icon>
+					</el-button>
+					<el-button v-else @click="toggleExpose">
+						收起
+						<el-icon class="el-icon--right">
+							<ArrowUpBold size="20" />
+						</el-icon>
+					</el-button>
+				</template>
 				<slot name="cneter-button" />
 				<el-button type="primary" @click="handleSearch">搜索</el-button>
 				<el-button @click="handleReset">重置</el-button>
@@ -77,13 +79,19 @@
 	</div>
 </template>
 <script setup lang="ts">
-	import { ref } from 'vue'
-	import { searchProps } from './querySearch.ts'
+	import { ref, nextTick, onMounted } from 'vue'
+	import { searchProps } from './querySearch'
 	const props = defineProps(searchProps)
 	const emit = defineEmits(['update:searchParams', 'change', 'search', 'reset', 'changeExpose'])
-
+	const defaultHeight = 52
 	//是否展开搜索栏
 	const isExpose = ref(false)
+	const isNeed = ref(false)
+	onMounted(() => {
+		nextTick(() => {
+			isNeed.value = document.getElementsByClassName('container-search-search')[0].clientHeight !== defaultHeight
+		})
+	})
 	const toggleExpose = () => {
 		isExpose.value = !isExpose.value
 	}
