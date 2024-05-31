@@ -1,6 +1,6 @@
 <template lang="">
 	<div class="basic-table">
-		<div v-if="title || slots" class="basic-table-top">
+		<div v-if="title || slots.buttons" class="basic-table-top">
 			<div class="basic-table-top-left">
 				<div class="basic-table-top-left-title">{{ title }}</div>
 			</div>
@@ -23,6 +23,9 @@
 						<template #default="scope">
 							<span v-if="!item.type || item.type === 'text'" v-bind="item.attrs"> {{ scope.row[item.prop] }}</span>
 							<el-tag v-else-if="item.type === 'tag'" v-bind="item.attrs"> {{ scope.row[item.prop] }}</el-tag>
+							<span v-else-if="item.type === 'options'" v-bind="item.attrs">
+								<slot name="optionsButtons" :data="item" />
+							</span>
 						</template>
 					</el-table-column>
 				</template>
@@ -49,6 +52,7 @@
 	})
 
 	const slots = useSlots()
+	console.log(slots)
 </script>
 <style lang="scss" scoped>
 	.basic-table {

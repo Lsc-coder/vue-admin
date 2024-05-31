@@ -15,15 +15,19 @@ const routes = [
 		path: '/system',
 		component: Layout,
 		children: [
-			{ path: '/menu', component: () => import('@/views/system/menuManage.vue') },
-			{ path: '/permission', component: () => import('@/views/system/permissionManage.vue') },
-			{ path: '/user', component: () => import('@/views/system/userManage.vue') },
+			{ path: '/menu', component: () => import('@/views/system/menuManage.vue'), meta: { title: '菜单管理' } },
+			{
+				path: '/permission',
+				component: () => import('@/views/system/permissionManage.vue'),
+				meta: { title: '权限管理' },
+			},
+			{ path: '/user', component: () => import('@/views/system/userManage.vue'), meta: { title: '用户管理' } },
 		],
 	},
 	{
 		path: '/login',
 		component: () => import('@/views/login/login.vue'),
-		meta: { title: '登录' },
+		meta: { title: '登录页面' },
 	},
 ]
 

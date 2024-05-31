@@ -1,7 +1,7 @@
 <template>
 	<div class="flex justify-between w-100%">
-		<div class="flex justify-center items-center p-l20 cursor-pointer" @click="toggleSideBar">
-			<el-icon size="50" color="#A9ABB3" class="hover:bg-gray-100 p-10"><Menu /></el-icon>
+		<div class="flex justify-center items-center p-l20 cursor-pointer">
+			<el-icon size="50" color="#A9ABB3" class="hover:bg-gray-100 p-10" @click="toggleSideBar"><Menu /></el-icon>
 			<BreadCrumb></BreadCrumb>
 		</div>
 		<!-- <div class="navbar-main">
