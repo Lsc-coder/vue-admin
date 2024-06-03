@@ -24,7 +24,7 @@
 							<span v-if="!item.type || item.type === 'text'" v-bind="item.attrs"> {{ scope.row[item.prop] }}</span>
 							<el-tag v-else-if="item.type === 'tag'" v-bind="item.attrs"> {{ scope.row[item.prop] }}</el-tag>
 							<span v-else-if="item.type === 'options'" v-bind="item.attrs">
-								<slot name="optionsButtons" :data="item" />
+								<slot name="action" :data="item" />
 							</span>
 						</template>
 					</el-table-column>

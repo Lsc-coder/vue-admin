@@ -2,18 +2,18 @@
 	<div :class="{ 'container-search-search': true, expose: isExpose }">
 		<el-row class="row-bg" justify="start" :gutter="20">
 			<el-form ref="form" class="form_flex" :inline="true" :label-width="`${labelWidth}px`">
-				<el-col v-for="(item, index) in items" v-bind="layout" :key="index">
+				<el-col v-for="(item, index) in searchItem" v-bind="layout" :key="index">
 					<el-form-item :label="item.label">
 						<!-- <component :is="`el-${item.type}`" /> -->
 						<el-input
 							v-if="!item.type || item.type === 'input' || item.type === 'password'"
-							:model-value="modelValue[item.key]"
+							:model-value="searchParams[item.key]"
 							:placeholder="item.placeholder || '请输入'"
 							@update:model-value="handleValueChange($event, item.key)"
 						/>
 						<el-select
 							v-else-if="item.type === 'select'"
-							:model-value="modelValue[item.key]"
+							:model-value="searchParams[item.key]"
 							:placeholder="item.placeholder || '请选择'"
 							@update:model-value="handleValueChange($event, item.key)"
 						>
@@ -21,20 +21,20 @@
 						</el-select>
 						<el-date-picker
 							v-else-if="item.type === 'date'"
-							v-model="modelValue[item.key]"
+							v-model="searchParams[item.key]"
 							:placeholder="item.placeholder || '请输入'"
 							@update:model-value="handleValueChange($event, item.key)"
 						/>
 						<el-date-picker
 							v-else-if="item.type === 'datePicker'"
-							v-model="modelValue[item.key]"
+							v-model="searchParams[item.key]"
 							type="datetimerange"
 							:placeholder="item.placeholder || '请输入'"
 							@update:model-value="handleValueChange($event, item.key)"
 						/>
 						<el-select-v2
 							v-else-if="item.type === 'mulSelect'"
-							v-model="modelValue[item.key]"
+							v-model="searchParams[item.key]"
 							:options="item.options"
 							:placeholder="item.placeholder || '请输入'"
 							multiple
@@ -42,7 +42,7 @@
 						/>
 						<el-cascader
 							v-else-if="item.type === 'cascader'"
-							:model-value="modelValue[item.key]"
+							:model-value="searchParams[item.key]"
 							:options="item.options"
 							:placeholder="item.placeholder || '请选择'"
 							@update:model-value="handleValueChange($event, item.key)"
@@ -79,14 +79,22 @@
 	</div>
 </template>
 <script setup lang="ts">
-	import { ref, nextTick, onMounted } from 'vue'
 	import { searchProps } from './querySearch'
+	import { ref, nextTick, onMounted, useAttrs } from 'vue'
+
+	defineOptions({
+		name: 'QuerySearch',
+		inheritAttrs: false,
+	})
+
 	const props = defineProps(searchProps)
-	const emit = defineEmits(['update:searchParams', 'change', 'search', 'reset', 'changeExpose'])
-	const defaultHeight = 52
+
+	const emit = defineEmits(['searchParams', 'change', 'search', 'reset', 'changeExpose'])
+
 	//是否展开搜索栏
-	const isExpose = ref(false)
+	const defaultHeight = 52
 	const isNeed = ref(false)
+	const isExpose = ref(false)
 	onMounted(() => {
 		nextTick(() => {
 			isNeed.value = document.getElementsByClassName('container-search-search')[0].clientHeight !== defaultHeight
@@ -97,12 +105,12 @@
 	}
 
 	const handleValueChange = (value: any, field: string) => {
-		emit('update:searchParams', { ...props.modelValue, [field]: value })
+		emit('searchParams', { ...props.searchParams, [field]: value })
 	}
-	const handleSearch = (value: any, field: string) => {
-		emit('search', props)
+	const handleSearch = () => {
+		emit('search')
 	}
-	const handleReset = (value: any, field: string) => {
+	const handleReset = () => {
 		emit('reset', props)
 	}
 	const handleChange = (value: any, field: string) => {
